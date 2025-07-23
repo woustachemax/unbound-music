@@ -5,6 +5,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
-        provider: "postgresql", 
-    }),
+        provider: "postgresql",
+        
+    }),   
+     socialProviders: {
+        spotify: {
+            clientId: process.env.SPOTIFY_CLIENT_ID!,
+            clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
+            scope: ["playlist-read-private playlist-modify-public"] 
+        }
+    }
+
 });
